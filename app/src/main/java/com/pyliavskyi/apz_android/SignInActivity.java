@@ -2,6 +2,7 @@ package com.pyliavskyi.apz_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
@@ -25,9 +26,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class SignInActivity extends AppCompatActivity {
-
-    private String lan;
+public class SignInActivity extends Activity {
 
     private EditText email;
     private EditText password;
@@ -88,18 +87,11 @@ public class SignInActivity extends AppCompatActivity {
                         .show();
                 Toast.makeText(getApplicationContext(), userinfo.get("chatId"), Toast.LENGTH_SHORT)
                         .show();
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), UserProfileComponentActivity.class);
                 startActivity(i);
                 finish();
             } else {
-                if (lan == "ua") {
-                    Toast.makeText(getApplicationContext(), "Аккаунт не знайдено", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT)
-                            .show();
-                }
-
+                Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -139,6 +131,22 @@ public class SignInActivity extends AppCompatActivity {
         return respp;
     }
 
+    private boolean isValid() {
+        String mailRegex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+        boolean isValidEmail = Pattern.matches(mailRegex, email.getText().toString());
+        boolean validPassword = (password.getText().toString().length() > 1);
+
+
+        Toast.makeText(getApplicationContext(), isValidEmail ? "1true" : "1false", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), validPassword ? "2true" : "2false", Toast.LENGTH_SHORT).show();
+
+
+        if (isValidEmail && validPassword) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,8 +163,7 @@ public class SignInActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.button);
 
         loginButton.setOnClickListener(v -> {
-            boolean validEmail = Pattern.matches("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$", email.getText().toString());
-            if (!validEmail) {
+            if (isValid()) {
                 Resources res = getResources();
                 String baseUrl = res.getString(R.string.baseUrl);
                 String url1 = baseUrl + "/User/LoginLikeClient";
@@ -167,21 +174,10 @@ public class SignInActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 new SignInRequest().execute(url);
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "у жени все криво", Toast.LENGTH_SHORT)
-                        .show();
-            }
-
-            //проверить
-            if (lan == "ua") {
-                Toast.makeText(getApplicationContext(), "Перевірте дані", Toast.LENGTH_SHORT)
-                        .show();
             } else {
-                Toast.makeText(getApplicationContext(), "Chek data", Toast.LENGTH_SHORT)
+                Toast.makeText(getApplicationContext(), "ошибка", Toast.LENGTH_SHORT)
                         .show();
             }
-
         });
     }
 }
