@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">APZ_android</string>
-    <string name="baseUrl">https://apzbackend.azurewebsites.net/api</string>
+    <string name="baseUrl">https://6eb1c1161eea.ngrok.io/api</string>
     <string name="chatConnectionUrl">https://apzbackend.azurewebsites.net</string>
 </resources>
