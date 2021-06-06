@@ -40,7 +40,7 @@ public class RegistrationActivity extends Activity {
 
     SessionManager session;
 
-    private class SignUnRequest extends AsyncTask<URL, Void, String> {
+    private class SignUpRequest extends AsyncTask<URL, Void, String> {
 
         @Override
         protected String doInBackground(URL... urls) {
@@ -83,9 +83,8 @@ public class RegistrationActivity extends Activity {
     public String getSignUpResponse(URL url) throws IOException {
         JSONObject jsonObject = null;
         try {
-
             jsonObject = new JSONObject(
-                    "{\"name\":" + name.getText().toString() +
+                    "{\"token\":" + name.getText().toString() +
                             ",\"surname\": " + surname.getText().toString() +
                             ",\"email\": " + email.getText().toString() +
                             ",\"password\": " + password.getText().toString() +
@@ -109,13 +108,13 @@ public class RegistrationActivity extends Activity {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         connection.getInputStream()));
-        String respp = "";
+        String response = "";
         String inputLine;
 
         while ((inputLine = in.readLine()) != null)
-            respp += inputLine;
+            response += inputLine;
         in.close();
-        return respp;
+        return response;
     }
 
     private boolean isValid() {
@@ -177,7 +176,7 @@ public class RegistrationActivity extends Activity {
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
-                new SignUnRequest().execute(url);
+                new SignUpRequest().execute(url);
             } else {
                 Toast.makeText(getApplicationContext(), "невалидно", Toast.LENGTH_SHORT).show();
             }

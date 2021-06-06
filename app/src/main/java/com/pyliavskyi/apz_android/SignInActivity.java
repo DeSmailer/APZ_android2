@@ -73,20 +73,7 @@ public class SignInActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                try {
 
-                    session.putChatId("123");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                Toast.makeText(getApplicationContext(), "запрос вернуло", Toast.LENGTH_SHORT)
-                        .show();
-                HashMap<String, String> userinfo = session.getUserDetails();
-                Toast.makeText(getApplicationContext(), userinfo.get("token"), Toast.LENGTH_SHORT)
-                        .show();
-                Toast.makeText(getApplicationContext(), userinfo.get("chatId"), Toast.LENGTH_SHORT)
-                        .show();
                 Intent i = new Intent(getApplicationContext(), UserProfileComponentActivity.class);
                 startActivity(i);
                 finish();
@@ -122,13 +109,13 @@ public class SignInActivity extends Activity {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         connection.getInputStream()));
-        String respp = "";
+        String response = "";
         String inputLine;
 
         while ((inputLine = in.readLine()) != null)
-            respp += inputLine;
+            response += inputLine;
         in.close();
-        return respp;
+        return response;
     }
 
     private boolean isValid() {
@@ -136,22 +123,13 @@ public class SignInActivity extends Activity {
         boolean isValidEmail = Pattern.matches(mailRegex, email.getText().toString());
         boolean validPassword = (password.getText().toString().length() > 1);
 
-
-        Toast.makeText(getApplicationContext(), isValidEmail ? "1true" : "1false", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), validPassword ? "2true" : "2false", Toast.LENGTH_SHORT).show();
-
-
         if (isValidEmail && validPassword) {
             return true;
         }
         return false;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-
+    private void SignInRequestRun(){
 
         session = new SessionManager(getApplicationContext());
 
@@ -179,5 +157,15 @@ public class SignInActivity extends Activity {
                         .show();
             }
         });
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sign_in);
+
+        SignInRequestRun();
+
     }
 }

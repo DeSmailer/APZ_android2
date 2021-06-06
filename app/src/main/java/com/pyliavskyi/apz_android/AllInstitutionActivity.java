@@ -98,13 +98,13 @@ public class AllInstitutionActivity extends Activity {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         connection.getInputStream()));
-        String respp = "";
+        String response = "";
         String inputLine;
 
         while ((inputLine = in.readLine()) != null)
-            respp += inputLine;
+            response += inputLine;
         in.close();
-        return respp;
+        return response;
     }
 
     @Override

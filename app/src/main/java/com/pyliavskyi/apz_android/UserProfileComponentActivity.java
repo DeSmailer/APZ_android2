@@ -26,22 +26,22 @@ import java.util.regex.Pattern;
 
 public class UserProfileComponentActivity extends Activity {
 
-    private EditText id;
-    private EditText name;
-    private EditText surname;
-    private EditText feature;
+    private EditText userId;
+    private EditText userName;
+    private EditText userSurname;
+    private EditText userFeature;
 
     private Button confirmEditingButton;
 
     SessionManager session;
 
-    private class SignInRequest extends AsyncTask<URL, Void, String> {
+    private class GetUserInfoRequest extends AsyncTask<URL, Void, String> {
 
         @Override
         protected String doInBackground(URL... urls) {
             String response = null;
             try {
-                response = getSignInResponse(urls[0]);
+                response = getUserInfoResponse(urls[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -59,60 +59,43 @@ public class UserProfileComponentActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                session = new SessionManager(getApplicationContext());
                 try {
 
-                    session.createLoginSession(
-                            "",
-                            json.getString("token"),
-                            "",
-                            json.getString("institutionId"),
-                            json.getString("role"),
-                            ""
-                    );
+                    userId = findViewById(R.id.editTextTextPersonName);
+                    userName = findViewById(R.id.editTextTextPersonName4);
+                    userSurname = findViewById(R.id.editTextTextPersonName5);
+                    userFeature = findViewById(R.id.editTextTextPersonName6);
+
+                    userId.setText(json.getString("id"));
+                    userName.setText(json.getString("name"));
+                    userSurname.setText(json.getString("surname"));
+                    userFeature.setText(json.getString("feature"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                try {
 
-                    session.putChatId("123");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                Toast.makeText(getApplicationContext(), "запрос вернуло", Toast.LENGTH_SHORT)
-                        .show();
-                HashMap<String, String> userinfo = session.getUserDetails();
-                Toast.makeText(getApplicationContext(), userinfo.get("token"), Toast.LENGTH_SHORT)
-                        .show();
-                Toast.makeText(getApplicationContext(), userinfo.get("chatId"), Toast.LENGTH_SHORT)
-                        .show();
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-                finish();
+                //Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                //startActivity(i);
+                //finish();
             } else {
-                if (lan == "ua") {
-                    Toast.makeText(getApplicationContext(), "Аккаунт не знайдено", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT)
-                            .show();
-                }
-
+                Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT)
+                        .show();
             }
         }
     }
 
-    public String getSignInResponse(URL url) throws IOException {
+    public String getUserInfoResponse(URL url) throws IOException {
+        session = new SessionManager(getApplicationContext());
+        HashMap<String, String> userinfo = session.getUserDetails();
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(
-                    "{\"email\":" + email.getText().toString() +
-                            ",\"password\": " + password.getText().toString() + "}");
+                    "{\"token\":" + "\"" + userinfo.get("token") + "\"" + "}");
         } catch (JSONException err) {
+            Toast.makeText(getApplicationContext(), err.toString(), Toast.LENGTH_SHORT).show();
 
         }
-
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
@@ -129,29 +112,144 @@ public class UserProfileComponentActivity extends Activity {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
                         connection.getInputStream()));
-        String respp = "";
+        String response = "";
         String inputLine;
 
         while ((inputLine = in.readLine()) != null)
-            respp += inputLine;
+            response += inputLine;
         in.close();
-        return respp;
+        return response;
+    }
+
+    private class UpdateUserInfoRequest extends AsyncTask<URL, Void, String> {
+
+        @Override
+        protected String doInBackground(URL... urls) {
+            String response = null;
+            try {
+                response = updateUserInfoResponse(urls[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            if (response != null) {
+                JSONObject json = null;
+                try {
+                    json = new JSONObject(response);
+                    Toast.makeText(getApplicationContext(), json.toString(), Toast.LENGTH_SHORT)
+                            .show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Intent i = new Intent(getApplicationContext(), SignInActivity.class);
+                startActivity(i);
+                finish();
+            } else {
+
+                Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+    }
+
+    public String updateUserInfoResponse(URL url) throws IOException {
+        session = new SessionManager(getApplicationContext());
+        HashMap<String, String> userinfo = session.getUserDetails();
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(
+                    "{\"id\":" + Integer.parseInt(userId.getText().toString())  +
+                            ",\"name\": " + userName.getText().toString() +
+                            ",\"surname\": " + userSurname.getText().toString() +
+                            ",\"feature\": " + userFeature.getText().toString() + "}");
+        } catch (JSONException err) {
+            Toast.makeText(getApplicationContext(), err.toString(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("PUT");
+        connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+        connection.setRequestProperty("token", userinfo.get("token"));
+        connection.setRequestProperty("Accept", "application/json");
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+
+        DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+        wr.writeBytes(jsonObject.toString());
+        wr.flush();
+        wr.close();
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(
+                        connection.getInputStream()));
+        String response = "";
+        String inputLine;
+
+        while ((inputLine = in.readLine()) != null)
+            response += inputLine;
+        in.close();
+        return response;
     }
 
     private boolean isValid() {
-        String mailRegex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
-        boolean isValidEmail = Pattern.matches(mailRegex, email.getText().toString());
-        boolean validPassword = (password.getText().toString().length() > 1);
+
+        boolean validUserId = (userId.getText().toString().length() > 1);
+        boolean validUserName = (userName.getText().toString().length() > 1);
+        boolean validUserSurname = (userSurname.getText().toString().length() > 1);
+        boolean validUserFeature = (userFeature.getText().toString().length() > 1);
 
 
-        Toast.makeText(getApplicationContext(), isValidEmail ? "1true" : "1false", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), validPassword ? "2true" : "2false", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), validUserId ? "1true" : "1false", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), validUserName ? "2true" : "2false", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), validUserSurname ? "2true" : "2false", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), validUserFeature ? "2true" : "2false", Toast.LENGTH_SHORT).show();
 
-
-        if (isValidEmail && validPassword) {
+        if (validUserId && validUserName && validUserSurname && validUserFeature) {
             return true;
         }
         return false;
+    }
+
+    private void GetUserInfoRun() {
+        Resources res = getResources();
+        String base = res.getString(R.string.baseUrl);
+        String url1 = base + "/User/GetByToken";
+        URL url = null;
+        try {
+            url = new URL(url1);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        new GetUserInfoRequest().execute(url);
+    }
+
+    private void UpdateUserInfoRun() {
+
+        confirmEditingButton = findViewById(R.id.button2);
+
+        confirmEditingButton.setOnClickListener(v -> {
+
+            Resources res = getResources();
+            String base = res.getString(R.string.baseUrl);
+            String url1 = base + "/User/UpdateProfile";
+            URL url = null;
+            try {
+                url = new URL(url1);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            new UpdateUserInfoRequest().execute(url);
+        });
+
     }
 
 
@@ -160,31 +258,8 @@ public class UserProfileComponentActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile_component);
 
-        session = new SessionManager(getApplicationContext());
+        GetUserInfoRun();
+        UpdateUserInfoRun();
 
-        email = findViewById(R.id.editTextTextEmailAddress);
-        password = findViewById(R.id.editTextTextPassword);
-        email.setText("email11@gmail.com");
-        password.setText("password");
-
-        loginButton = findViewById(R.id.button);
-
-        loginButton.setOnClickListener(v -> {
-            if (isValid()) {
-                Resources res = getResources();
-                String baseUrl = res.getString(R.string.baseUrl);
-                String url1 = baseUrl + "/User/LoginLikeClient";
-                URL url = null;
-                try {
-                    url = new URL(url1);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-                new SignInActivity.SignInRequest().execute(url);
-            } else {
-                Toast.makeText(getApplicationContext(), "у жени все криво", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        });
     }
 }
