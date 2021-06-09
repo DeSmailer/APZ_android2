@@ -1,7 +1,5 @@
 package com.pyliavskyi.apz_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -9,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +20,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class SignInActivity extends Activity {
@@ -74,7 +70,7 @@ public class SignInActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                Intent i = new Intent(getApplicationContext(), UserProfileComponentActivity.class);
+                Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
                 startActivity(i);
                 finish();
             } else {
@@ -129,7 +125,7 @@ public class SignInActivity extends Activity {
         return false;
     }
 
-    private void SignInRequestRun(){
+    private void SignInRequestRun() {
 
         session = new SessionManager(getApplicationContext());
 
@@ -160,12 +156,24 @@ public class SignInActivity extends Activity {
 
     }
 
+    private void ToRegister() {
+
+        TextView toRegister = findViewById(R.id.textToRegister);
+
+        toRegister.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), RegistrationActivity.class);
+            startActivity(i);
+            finish();
+        });
+        ;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
         SignInRequestRun();
-
+        ToRegister();
     }
 }

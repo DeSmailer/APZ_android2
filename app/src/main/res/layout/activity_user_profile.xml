@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserProfileComponentActivity">
+    tools:context=".UserProfileActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/constraintLayout12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +29,6 @@
                     android:id="@+id/constraintLayout8"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
@@ -52,6 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:inputType="textPersonName"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -65,12 +64,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
                     <Button
                         android:id="@+id/button6"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="42dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="6dp"
@@ -83,7 +82,7 @@
                     <Button
                         android:id="@+id/button5"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="42dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="6dp"
@@ -126,7 +125,7 @@
 
                     <Button
                         android:id="@+id/button7"
-                        android:layout_width="147dp"
+                        android:layout_width="148dp"
                         android:layout_height="42dp"
                         android:layout_marginBottom="16dp"
                         android:text="переглянути"
@@ -162,32 +161,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:inputType="textPersonName"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView6" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout9"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
-
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="210dp"
-                        android:layout_height="50dp"
-                        android:text="Підтвердити аля редактировать"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -272,6 +251,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
+                        android:enabled="false"
                         android:inputType="textPersonName"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -285,8 +265,8 @@
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
 
                     <Button
-                        android:id="@+id/button8"
-                        android:layout_width="132dp"
+                        android:id="@+id/buttonExit"
+                        android:layout_width="148dp"
                         android:layout_height="42dp"
                         android:text="Вийти"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -305,6 +285,7 @@
         android:layout_width="411dp"
         android:layout_height="100dp"
         android:background="#B10C0C"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

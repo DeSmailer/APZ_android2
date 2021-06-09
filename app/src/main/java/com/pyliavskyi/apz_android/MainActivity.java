@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         @Override
         protected String doInBackground(URL... urls) {
             String response = null;
-            try{
+            try {
                 response = getResponse(urls[0]);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -43,20 +43,20 @@ public class MainActivity extends Activity {
         }
 
         @Override
-        protected void onPostExecute(String response){
+        protected void onPostExecute(String response) {
 
-            if(response != null) {
+            if (response != null) {
 
                 JSONObject json = null;
 
-               try {
+                try {
                     json = new JSONObject(response);
-                   testResponse.setText(json.getString("myTestString"));
-               } catch (JSONException e) {
+                    testResponse.setText(json.getString("myTestString"));
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            } else{
-                Toast.makeText(getApplicationContext(),"...", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "...", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
 
     public String getResponse(URL url) throws IOException {
 
-        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-Type", "application/json; utf-8");
         connection.setRequestProperty("Accept", "application/json");
@@ -77,7 +77,7 @@ public class MainActivity extends Activity {
         String inputLine;
 
         while ((inputLine = in.readLine()) != null)
-            respp+=inputLine;
+            respp += inputLine;
         in.close();
         return respp;
     }

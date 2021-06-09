@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -139,11 +140,7 @@ public class RegistrationActivity extends Activity {
         return false;
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+    private void SignUpRequestRun() {
 
         session = new SessionManager(getApplicationContext());
 
@@ -181,5 +178,28 @@ public class RegistrationActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "невалидно", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    private void ToLogIn() {
+
+        TextView toRegister = findViewById(R.id.textToLogIn);
+
+        toRegister.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(i);
+            finish();
+        });
+        ;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registration);
+
+
+        SignUpRequestRun();
+        ToLogIn();
     }
 }

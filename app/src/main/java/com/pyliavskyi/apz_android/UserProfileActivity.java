@@ -1,7 +1,5 @@
 package com.pyliavskyi.apz_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -22,9 +20,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
-public class UserProfileComponentActivity extends Activity {
+public class UserProfileActivity extends Activity {
 
     private EditText userId;
     private EditText userName;
@@ -32,6 +29,9 @@ public class UserProfileComponentActivity extends Activity {
     private EditText userFeature;
 
     private Button confirmEditingButton;
+
+    private Button logOutButton;
+    private Button toMyInstitutions;
 
     SessionManager session;
     HashMap<String, String> userinfo;
@@ -75,10 +75,6 @@ public class UserProfileComponentActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                //Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                //startActivity(i);
-                //finish();
             } else {
                 Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT)
                         .show();
@@ -89,13 +85,13 @@ public class UserProfileComponentActivity extends Activity {
     public String getUserInfoResponse(URL url) throws IOException {
         session = new SessionManager(getApplicationContext());
         HashMap<String, String> userinfo = session.getUserDetails();
+
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(
                     "{\"token\":" + "\"" + userinfo.get("token") + "\"" + "}");
         } catch (JSONException err) {
             Toast.makeText(getApplicationContext(), err.toString(), Toast.LENGTH_SHORT).show();
-
         }
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -136,11 +132,34 @@ public class UserProfileComponentActivity extends Activity {
         new GetUserInfoRequest().execute(url);
     }
 
+    private void LogOutRun() {
+
+        logOutButton = findViewById(R.id.buttonExit);
+
+        logOutButton.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(i);
+            finish();
+        });
+    }
+
+    private void ToMyInstitutionsRun() {
+
+        toMyInstitutions = findViewById(R.id.button7);
+
+        toMyInstitutions.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), MyInstitutionsActivity.class);
+            startActivity(i);
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile_component);
+        setContentView(R.layout.activity_user_profile);
 
         GetUserInfoRun();
+        ToMyInstitutionsRun();
+        LogOutRun();
     }
 }
