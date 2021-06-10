@@ -107,12 +107,7 @@ public class AllInstitutionActivity extends Activity {
         return response;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_institution);
-
-
+    private void getInstitutionsRun(){
         institutionList = new ArrayList<View>();
 
         linear = findViewById(R.id.InstitutionList1);
@@ -130,4 +125,11 @@ public class AllInstitutionActivity extends Activity {
         new GetInstitutions().execute(url);
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_all_institution);
+
+        getInstitutionsRun();
+    }
 }

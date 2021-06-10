@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">APZ_android</string>
-    <string name="baseUrl" translatable="false">https://e82785b64691.ngrok.io/api</string>
-    <string name="chatConnectionUrl" translatable="false">https://e82785b64691.ngrok.io</string>
+    <string name="baseUrl" translatable="false">https://f78eecde1130.ngrok.io/api</string>
+    <string name="chatConnectionUrl" translatable="false">https://f78eecde1130.ngrok.io</string>
 
     <string name="SignIn">SignIn</string>
 </resources>
