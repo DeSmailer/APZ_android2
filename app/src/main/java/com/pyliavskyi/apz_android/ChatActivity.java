@@ -3,10 +3,18 @@ package com.pyliavskyi.apz_android;
 import android.app.Activity;
 import android.os.Bundle;
 
-import java.util.Scanner;
-import java.util.logging.Logger;
-
 import microsoft.aspnet.signalr.client.Action;
+import microsoft.aspnet.signalr.client.ErrorCallback;
+import microsoft.aspnet.signalr.client.LogLevel;
+import microsoft.aspnet.signalr.client.Logger;
+import microsoft.aspnet.signalr.client.MessageReceivedHandler;
+import microsoft.aspnet.signalr.client.hubs.HubConnection;
+import microsoft.aspnet.signalr.client.hubs.HubProxy;
+
+import com.google.gson.JsonElement;
+
+import java.util.Scanner;
+
 
 public class ChatActivity extends Activity {
 
