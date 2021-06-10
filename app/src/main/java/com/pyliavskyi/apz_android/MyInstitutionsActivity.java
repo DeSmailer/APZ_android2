@@ -78,8 +78,8 @@ public class MyInstitutionsActivity extends Activity {
 
                 Toast.makeText(getApplicationContext(), userinfo.get("token"), Toast.LENGTH_SHORT).show();
 
-                //Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
-                //startActivity(i);
+                Intent i = new Intent(getApplicationContext(), InstitutionProfileActivity.class);
+                startActivity(i);
                 //finish();
             } else {
                 Toast.makeText(getApplicationContext(), "Eror", Toast.LENGTH_SHORT).show();

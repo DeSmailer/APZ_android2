@@ -58,19 +58,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:text="ID"
-                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName8"
+                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName81"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName8"
+                        android:id="@+id/editTextTextPersonName81"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
                         android:enabled="false"
                         android:inputType="textPersonName"
+                        android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -91,19 +92,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:text="Назва закладу"
-                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName9"
+                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName91"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName9"
+                        android:id="@+id/editTextTextPersonName91"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
                         android:enabled="false"
                         android:inputType="textPersonName"
+                        android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -122,19 +124,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:text="Місце розташування"
-                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName10"
+                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName101"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName10"
+                        android:id="@+id/editTextTextPersonName101"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
-                        android:enabled="false"
                         android:inputType="textPersonName"
+                        android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -142,41 +144,10 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout18"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout15">
-
-                    <TextView
-                        android:id="@+id/textView16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:text="Поточний баланс"
-                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName12"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editTextTextPersonName12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:ems="10"
-                        android:enabled="false"
-                        android:inputType="textPersonName"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout17"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout18">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout15">
 
                     <TextView
                         android:id="@+id/textView17"
@@ -184,19 +155,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:text="Чат код"
-                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName13"
+                        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName131"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editTextTextPersonName13"
+                        android:id="@+id/editTextTextPersonName131"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:ems="10"
                         android:enabled="false"
                         android:inputType="textPersonName"
+                        android:textColor="#000000"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -240,20 +212,40 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout12"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:background="#B10C0C"
+        android:layout_height="60dp"
+        android:background="#CDAFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="93dp"
-            android:layout_height="42dp"
-            android:text="Button"
+        <ImageButton
+            android:id="@+id/buttonToAllInstitutions"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_university_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonToChatCode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonToChatCode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_chat_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonToProfile"
+            app:layout_constraintStart_toEndOf="@+id/buttonToAllInstitutions"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonToProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_user_foreground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonToChatCode"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

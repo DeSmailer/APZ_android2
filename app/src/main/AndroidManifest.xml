@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.APZ_android">
-        <activity android:name=".MyInstitutionsActivity"></activity>
-        <activity android:name=".AllInstitutionActivity"></activity>
-        <activity android:name=".ChatCodeFieldActivity"></activity>
-        <activity android:name=".InstitutionProfileActivity"></activity>
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".MyChatsActivity" />
+        <activity android:name=".MyInstitutionsActivity" />
+        <activity android:name=".AllInstitutionActivity" />
+        <activity android:name=".ChatCodeFieldActivity" />
+        <activity android:name=".InstitutionProfileActivity" />
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
