@@ -23,7 +23,6 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -38,8 +37,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.microsoft.signalr:signalr:1.0.0'
-    compile files('com.google.code.gson:gson:2.3.1')
-    compile files('libs/gson-2.2.2.jar')
+    implementation 'com.google.code.gson:gson:2.8.7'
+
     compile files('libs/signalr-client-sdk.jar')
     compile files('libs/signalr-client-sdk-android.jar')
 }
