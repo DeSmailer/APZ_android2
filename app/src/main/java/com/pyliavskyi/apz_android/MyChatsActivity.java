@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -283,11 +284,36 @@ public class MyChatsActivity extends Activity {
         new GetMyChats().execute(url);
     }
 
+    public void NavBar(){
+        ImageButton buttonToAllInstitutions = findViewById(R.id.buttonToAllInstitutions);
+        ImageButton buttonToChatCode = findViewById(R.id.buttonToChatCode);
+        ImageButton buttonToProfile = findViewById(R.id.buttonToProfile);
+
+        buttonToAllInstitutions.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), AllInstitutionActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+
+        buttonToChatCode.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), ChatCodeFieldActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+
+        buttonToProfile.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_chats);
 
         GetMyChatsRequestRun();
+        NavBar();
     }
 }

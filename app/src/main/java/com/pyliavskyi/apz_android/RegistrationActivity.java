@@ -70,13 +70,7 @@ public class RegistrationActivity extends Activity {
                 startActivity(i);
                 finish();
             } else {
-                if (lan == "ua") {
-                    Toast.makeText(getApplicationContext(), "Аккаунт не знайдено", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT)
-                            .show();
-                }
+                Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -127,12 +121,6 @@ public class RegistrationActivity extends Activity {
         boolean validSurname = (surname.getText().toString().length() > 1);
         boolean validName = (name.getText().toString().length() > 1);
         boolean validFeature = (feature.getText().toString().length() > 1);
-
-        Toast.makeText(getApplicationContext(), isValidEmail ? "1true" : "1false", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), validPassword ? "2true" : "2false", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), validSurname ? "3true" : "3false", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), validName ? "4true" : "4false", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), validFeature ? "5true" : "5false", Toast.LENGTH_SHORT).show();
 
         if (isValidEmail && validPassword && validSurname && validName && validFeature) {
             return true;

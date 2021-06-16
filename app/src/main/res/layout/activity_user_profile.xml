@@ -10,7 +10,8 @@
         android:id="@+id/scrollView2"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout12"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Особливість"
+                        android:text="@string/Feature"
                         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName6"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -61,64 +62,19 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout10"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
-
-                    <Button
-                        android:id="@+id/button6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="42dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="6dp"
-                        android:text="EN"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/button5"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-                    <Button
-                        android:id="@+id/button5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="42dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginBottom="6dp"
-                        android:text="UA"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/button6"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Мова інтерфейсу"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.144" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout11"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
 
                     <TextView
                         android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Мої заклади"
+                        android:text="@string/MyInstitutions"
                         app:layout_constraintBottom_toTopOf="@+id/button7"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +85,7 @@
                         android:layout_width="148dp"
                         android:layout_height="42dp"
                         android:layout_marginBottom="16dp"
-                        android:text="переглянути"
+                        android:text="@string/View"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Ім'я"
+                        android:text="@string/UserName"
                         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName4"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -184,7 +140,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Профіль"
+                        android:text="@string/Profile"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="ID"
+                        android:text="@string/UserId"
                         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -241,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Прізвище"
+                        android:text="@string/UserSurname"
                         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +227,7 @@
                         android:id="@+id/buttonExit"
                         android:layout_width="148dp"
                         android:layout_height="42dp"
-                        android:text="Вийти"
+                        android:text="@string/LogOut"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -285,22 +241,42 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout12"
-        android:layout_width="411dp"
-        android:layout_height="100dp"
-        android:background="#B10C0C"
-        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#CDAFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="93dp"
-            android:layout_height="42dp"
-            android:text="Button"
+        <ImageButton
+            android:id="@+id/buttonToAllInstitutions"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_university_foreground"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonToChatCode"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonToChatCode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_chat_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonToProfile"
+            app:layout_constraintStart_toEndOf="@+id/buttonToAllInstitutions"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonToProfile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_user_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/buttonToChatCode"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

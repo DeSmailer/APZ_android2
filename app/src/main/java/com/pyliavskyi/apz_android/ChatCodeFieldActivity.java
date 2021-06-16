@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,7 +72,8 @@ public class ChatCodeFieldActivity extends Activity {
                 Intent i = new Intent(getApplicationContext(), ChatActivity.class);
                 startActivity(i);
             } else {
-                Toast.makeText(getApplicationContext(), "User unknown", Toast.LENGTH_SHORT).show();
+                Resources res = getResources();
+                Toast.makeText(getApplicationContext(), res.getString(R.string.baseUrl), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -138,11 +140,36 @@ public class ChatCodeFieldActivity extends Activity {
 
     }
 
+    public void NavBar(){
+        ImageButton buttonToAllInstitutions = findViewById(R.id.buttonToAllInstitutions);
+        ImageButton buttonToChatCode = findViewById(R.id.buttonToChatCode);
+        ImageButton buttonToProfile = findViewById(R.id.buttonToProfile);
+
+        buttonToAllInstitutions.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), AllInstitutionActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+
+        buttonToChatCode.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), ChatCodeFieldActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+
+        buttonToProfile.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_code_field);
 
         openChatRun();
+        NavBar();
     }
 }

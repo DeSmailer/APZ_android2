@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -153,6 +154,30 @@ public class UserProfileActivity extends Activity {
         });
     }
 
+    public void NavBar(){
+        ImageButton buttonToAllInstitutions = findViewById(R.id.buttonToAllInstitutions);
+        ImageButton buttonToChatCode = findViewById(R.id.buttonToChatCode);
+        ImageButton buttonToProfile = findViewById(R.id.buttonToProfile);
+
+        buttonToAllInstitutions.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), AllInstitutionActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+
+        buttonToChatCode.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), ChatCodeFieldActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+
+        buttonToProfile.setOnClickListener(v -> {
+            Intent i = new Intent(getApplicationContext(), UserProfileActivity.class);
+            startActivity(i);
+            finishAffinity();
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,5 +186,6 @@ public class UserProfileActivity extends Activity {
         GetUserInfoRun();
         ToMyInstitutionsRun();
         LogOutRun();
+        NavBar();
     }
 }

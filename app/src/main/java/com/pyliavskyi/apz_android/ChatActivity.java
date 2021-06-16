@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
 
 import microsoft.aspnet.signalr.client.Action;
 import microsoft.aspnet.signalr.client.ErrorCallback;
@@ -68,8 +70,6 @@ public class ChatActivity extends Activity {
         protected String doInBackground(URL... urls) {
             String response = null;
             try {
-                // Create a new console logger
-
 
                 if (connection.getConnectionState() != null) {
                     connection.start().blockingAwait();
@@ -79,6 +79,7 @@ public class ChatActivity extends Activity {
                 HashMap<String, String> userinfo = session.getUserDetails();
 
                 connection.invoke(String.class, "JoinGroup", userinfo.get("chatToken"));
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -116,6 +117,7 @@ public class ChatActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                linear.removeAllViews();
                 for (int i = 0; i < res.length(); i++) {
                     JSONObject json = null;
                     try {
@@ -141,7 +143,6 @@ public class ChatActivity extends Activity {
                     linear.addView(view);
 
                 }
-
             } else {
                 Toast.makeText(getApplicationContext(), "...", Toast.LENGTH_SHORT).show();
             }
@@ -221,6 +222,7 @@ public class ChatActivity extends Activity {
 
         @Override
         protected void onPostExecute(String response) {
+            getOldMessagesRun();
         }
     }
 
@@ -271,17 +273,41 @@ public class ChatActivity extends Activity {
         messageButton = findViewById(R.id.button8);
 
         messageButton.setOnClickListener(v -> {
-            Resources res = getResources();
-            String base = res.getString(R.string.baseUrl);
-            String url1 = base + "/Chat/Post";
-            URL url = null;
-            try {
-                url = new URL(url1);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+            if (isValid()) {
+                Resources res = getResources();
+                String base = res.getString(R.string.baseUrl);
+                String url1 = base + "/Chat/Post";
+                URL url = null;
+                try {
+                    url = new URL(url1);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                new SendMessage().execute(url);
+            } else {
+                Resources res = getResources();
+                Toast.makeText(getApplicationContext(), res.getString(R.string.Empty), Toast.LENGTH_SHORT).show();
             }
-            new SendMessage().execute(url);
         });
+    }
+
+    private void toMyChats() {
+
+        ImageButton toMyChatsButton = findViewById(R.id.imageButtonToBack);
+
+        toMyChatsButton.setOnClickListener(v -> {
+            finish();
+        });
+
+    }
+
+    private boolean isValid() {
+        boolean validField = (messageField.getText().toString().length() > 0);
+
+        if (validField) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -299,12 +325,13 @@ public class ChatActivity extends Activity {
 
 
             userFeature = findViewById(R.id.textView16);
-            userFeature.setText("YPA");
+            userFeature.setText("Working");
         }, String.class);
 
         new ConnectionAsync().execute();
 
         getOldMessagesRun();
         sendMessageRun();
+        toMyChats();
     }
 }
